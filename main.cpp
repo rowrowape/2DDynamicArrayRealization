@@ -73,11 +73,11 @@ double get(arr array, int i, int j) {
 }
 
 double findMax(arr array) {
-    double maxElement = array.base[array.d1Lower][array.d2Lower];
-    for (int i = array.d1Lower; i < array.d1Lower; i++) {
-        for (int j = array.d2Lower; j < array.d2Higher; j++) {
-            if (maxElement < array.base[i - array.d1Lower][j - array.d2Lower]) {
-                maxElement = array.base[i - array.d1Lower][j - array.d2Lower];
+    double maxElement = array.base[0][0];
+    for (int i = 0; i < array.d1Higher - array.d1Lower + 1; i++) {
+        for (int j = 0; j < array.d1Higher - array.d1Lower + 1; j++) {
+            if (maxElement < array.base[i][j]) {
+                maxElement = array.base[i][j];
             }
         }
     }
@@ -85,20 +85,21 @@ double findMax(arr array) {
 }
 
 double print(arr array) {
-    for (int i = array.d2Lower; i < array.d2Higher; i++) {
+    cout << "\t";
+    for (int i = array.d2Lower; i < array.d2Higher + 1; i++) {
         cout << i << "\t";
     }
     cout << "\n";
-    for (int i = array.d1Lower; i < array.d1Higher; i++) {
-        cout << i;
-        for (int j = array.d2Lower; j < array.d2Higher; j++) {
+    for (int i = 0; i < array.d1Higher - array.d1Lower + 1; i++) {
+        cout << array.d1Lower + i << "\t";
+        for (int j = 0; j < array.d2Higher - array.d2Lower + 1; j++) {
             cout << array.base[i][j] << "\t";
         }
+        cout << "\n";
     }
 }
 
 int main() {
-
     arr a;
     cin.get();
     try {
