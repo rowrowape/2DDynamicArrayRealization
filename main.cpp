@@ -63,7 +63,7 @@ int init(arr &array, int d1Lower, int d1Higher, int d2Lower, int d2Higher, doubl
 }
 
 int kill(arr &array) {
-    for (int i = 0; i < array.d1Higher - array.d1Lower + 1; i++) {
+    for (int i = 0; i < array.d1Higher - array.d1Lower; i++) {
         delete array.base[i];
     }
     delete[] array.base;
@@ -105,7 +105,6 @@ double print(arr array) {
 
 int main() {
     arr a;
-    cin.get();
     try {
         init(a, 2, 5, -2, 2, -1);
     } catch (BadBorderException) {
@@ -116,19 +115,14 @@ int main() {
         cout << "Memory error" << endl;
         return 0;
     }
-    cin.get();
     try {
         put(a, 2, 0, get(a, 2, 0) + 10);
     } catch (BadBorderException) {
         cout << "Out of the array" << endl;
         return 0;
     }
-    cin.get();
     cout << findMax(a) << endl;
-    cin.get();
     print(a);
-    cin.get();
     kill(a);
-
     return 0;
 }
