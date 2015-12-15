@@ -7,11 +7,19 @@ using namespace std;
 struct arr {
     double **base;
     int d1Lower, d1Higher, d2Lower, d2Higher;
-
-    arr(int d1Lower, int d1Higher, int d2Lower, int d2Higher, double initial) {
-
-    }
 };
+
+double put (arr &array, int i, int j, double d )
+{
+   if ((i - array.d1Lower <= array.d1Higher) && (i - array.d1Lower >= array.d1Lower) && (j - array.d2Lower >= array.d2Lower) && (j - array.d2Lower <= array.d2Higher))
+    {
+       array.base[i][j] = d;
+    } else {
+       throw new BadBorderException;
+   }
+
+
+}
 
 int init(arr &array, int d1Lower, int d1Higher, int d2Lower, int d2Higher, double initial) {
     if (d1Higher <= d1Lower || d2Higher <= d2Lower) {
