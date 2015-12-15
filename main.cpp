@@ -1,45 +1,13 @@
 #include <iostream>
 #include "MemoryLimitExceded.h"
 #include "BadBorderException.h"
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
 
 using namespace std;
 
 struct arr {
     double **base;
     int d1Lower, d1Higher, d2Lower, d2Higher;
-
-    arr(int d1Lower, int d1Higher, int d2Lower, int d2Higher, double initial) {
-<<<<<<< HEAD
-        this->d1Lower = d1Lower;
-        this->d1Higher = d1Higher;
-        this->d2Lower = d2Lower;
-        this->d2Higher = d2Higher;
-        int i = 0;
-        try {
-            base = new double *[d1Higher - d1Lower];
-                for (i = 0; i < d1Higher - d1Lower; i++) {
-                base[i] = new double[d2Higher - d2Lower];
-            }
-        } catch (bad_alloc) {
-            for (int j = 0; j < i; j++) {
-                delete base[i];
-            }
-            delete[] base;
-            throw new bad_alloc;
-            }
-        for (i = 0; i < d1Higher - d1Lower; i++) {
-            for(int j=0; j < d2Higher - d2Lower; j++ ) {
-                base[i][j] = initial;
-            }
-        }
-=======
-
->>>>>>> origin/master
-    }
 };
 
 double put (arr &array, int i, int j, double d )
@@ -95,10 +63,5 @@ double get(arr array, int i, int j) {
 
 
 int main() {
-<<<<<<< HEAD
    return 0;
-=======
-
-    return 0;
->>>>>>> origin/master
 }
