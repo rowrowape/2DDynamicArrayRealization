@@ -6,7 +6,14 @@ using namespace std;
 
 struct arr {
     double **base;
-    int d1Lower, d1Higher, d2Lower, d2Higher;
+    int d1Lower, d1Higher, d2Lower, d2Higher
+    arr() {
+        this->d1Lower = 0;
+        this->d2Lower = 0;
+        this->d1Higher = 0;
+        this->d2Higher = 0;
+        this->base = 0;
+    };
 };
 
 double put (arr &array, int i, int j, double d )
