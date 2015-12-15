@@ -1,5 +1,4 @@
 #include <iostream>
-#include "MemoryLimitExceded.h"
 #include "BadBorderException.h"
 
 
@@ -64,7 +63,19 @@ double findMax(arr array) {
     return maxElement;
 }
 
-int main() {
+double print(arr array) {
+    for (int i = array.d2Lower; i < array.d2Higher; i++) {
+        cout << i << "\t";
+    }
+    cout << "\n";
+    for (int i = array.d1Lower; i < array.d1Higher; i++) {
+        cout << i;
+        for (int j = array.d2Lower; j < array.d2Higher; j++) {
+            cout << array.base[i][j] << "\t";
+        }
+    }
+}
 
+int main() {
     return 0;
 }
