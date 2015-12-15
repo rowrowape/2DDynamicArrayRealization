@@ -29,7 +29,7 @@ double put (arr &array, int i, int j, double d )
 }
 
 int init(arr &array, int d1Lower, int d1Higher, int d2Lower, int d2Higher, double initial) {
-    if (d1Higher <= d1Lower || d2Higher <= d2Lower) {
+    if (d1Higher < d1Lower || d2Higher < d2Lower) {
         throw new BadBorderException;
     }
     array.d1Lower = d1Lower;
@@ -38,12 +38,12 @@ int init(arr &array, int d1Lower, int d1Higher, int d2Lower, int d2Higher, doubl
     array.d2Higher = d2Higher;
 
     try {
-        array.base = new double *[d1Higher - d1Lower];
-        for (int i = 0; i < d1Higher - d1Lower; i++) {
+        array.base = new double *[d1Higher - d1Lower + 1];
+        for (int i = 0; i < d1Higher - d1Lower + 1; i++) {
             array.base[i] = new double[d2Higher - d2Lower];
         }
     } catch (bad_alloc) {
-        for (int i = 0; i < d1Higher - d1Lower; i++) {
+        for (int i = 0; i < d1Higher - d1Lower + 1; i++) {
             delete array.base[i];
         }
         delete[] array.base;
@@ -53,7 +53,7 @@ int init(arr &array, int d1Lower, int d1Higher, int d2Lower, int d2Higher, doubl
 }
 
 int kill(arr &array) {
-    for (int i = 0; i < array.d1Higher - array.d1Lower; i++) {
+    for (int i = 0; i < array.d1Higher - array.d1Lower + 1; i++) {
         delete array.base[i];
     }
     delete[] array.base;
