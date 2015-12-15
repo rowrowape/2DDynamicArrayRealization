@@ -52,6 +52,18 @@ double get(arr array, int i, int j) {
     return array.base[i - array.d1Lower][j - array.d2Lower];
 }
 
+double findMax(arr array) {
+    double maxElement = array.base[array.d1Lower][array.d2Lower];
+    for (int i = array.d1Lower; i < array.d1Lower; i++) {
+        for (int j = array.d2Lower; j < array.d2Higher; j++) {
+            if (maxElement < array.base[i - array.d1Lower][j - array.d2Lower]) {
+                maxElement = array.base[i - array.d1Lower][j - array.d2Lower];
+            }
+        }
+    }
+    return maxElement;
+}
+
 int main() {
 
     return 0;
