@@ -1,5 +1,7 @@
 #include <iostream>
 #include "MemoryLimitExceded.h"
+#include "BadBorderException.h"
+
 
 using namespace std;
 
@@ -30,7 +32,7 @@ struct arr {
 
 int init(arr &array, int d1Lower, int d1Higher, int d2Lower, int d2Higher, double initial) {
     if (d1Higher <= d1Lower || d2Higher <= d2Lower) {
-        return -1;
+        throw new BadBorderException;
     }
     try {
         array = *(new arr(d1Lower, d1Higher, d2Lower, d2Higher, initial));
@@ -40,11 +42,18 @@ int init(arr &array, int d1Lower, int d1Higher, int d2Lower, int d2Higher, doubl
     return 0;
 }
 
-int kill(arr& array){
+int kill(arr &array) {
     for (int i = 0; i < array.d1Higher - array.d1Lower; i++) {
         delete array.base[i];
     }
     delete[] array.base;
+}
+
+double get(arr array, int i, int j) {
+    if (array.d1Lower > i || i > array.d1Higher || array.d2Lower > j || j > array.d2Higher) {
+        throw new BadBorderException;
+    }
+    return array.base[i - array.d1Lower][j - array.d2Lower];
 }
 
 int main() {
