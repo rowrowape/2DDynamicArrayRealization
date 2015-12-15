@@ -1,13 +1,19 @@
 #include <iostream>
-#include "BadBorderException.h"
-#include "MemoryLimitExceded.h"
-
+#include <exception>
 
 using namespace std;
+
+struct BadBorderException : exception {
+
+};
+struct MemoryLimitExceded : exception {
+
+};
 
 struct arr {
     double **base;
     int d1Lower, d1Higher, d2Lower, d2Higher;
+
     arr() {
         this->d1Lower = 0;
         this->d2Lower = 0;
@@ -17,19 +23,15 @@ struct arr {
     };
 };
 
-double put (arr &array, int i, int j, double d )
-{
-   if ((i - array.d1Lower <= array.d1Higher) &&
-           (i - array.d1Lower >= array.d1Lower) &&
-           (j - array.d2Lower >= array.d2Lower) &&
-           (j - array.d2Lower <= array.d2Higher))
-    {
-       array.base[i][j] = d;
+double put(arr &array, int i, int j, double d) {
+    if ((i <= array.d1Higher) &&
+        (i >= array.d1Lower) &&
+        (j >= array.d2Lower) &&
+        (j <= array.d2Higher)) {
+        array.base[i - array.d1Lower][j - array.d2Lower] = d;
     } else {
-       throw new BadBorderException;
-   }
-
-
+        throw new BadBorderException;
+    }
 }
 
 int init(arr &array, int d1Lower, int d1Higher, int d2Lower, int d2Higher, double initial) {
@@ -98,10 +100,10 @@ double print(arr array) {
 int main() {
 
     arr a;
-
-    try{
-        init (a, 2, 5, -2, 2, -1);
-    } catch (BadBorderException){
+    cin.get();
+    try {
+        init(a, 2, 5, -2, 2, -1);
+    } catch (BadBorderException) {
         cout << "Out of the array" << endl;
         return 0;
     }
@@ -109,16 +111,18 @@ int main() {
         cout << "Memory error" << endl;
         return 0;
     }
+    cin.get();
     try {
         put(a, 2, 0, get(a, 2, 0) + 10);
     } catch (BadBorderException) {
         cout << "Out of the array" << endl;
         return 0;
     }
+    cin.get();
     cout << findMax(a) << endl;
-
+    cin.get();
     print(a);
-
+    cin.get();
     kill(a);
 
     return 0;
