@@ -42,18 +42,22 @@ int init(arr &array, int d1Lower, int d1Higher, int d2Lower, int d2Higher, doubl
     array.d1Higher = d1Higher;
     array.d2Lower = d2Lower;
     array.d2Higher = d2Higher;
-
+    int i = 0;
     try {
         array.base = new double *[d1Higher - d1Lower + 1];
-        for (int i = 0; i < d1Higher - d1Lower + 1; i++) {
+        for (i = 0; i < d1Higher - d1Lower + 1; i++) {
             array.base[i] = new double[d2Higher - d2Lower];
         }
     } catch (bad_alloc) {
-        for (int i = 0; i < d1Higher - d1Lower + 1; i++) {
+        for (int j = 0; j < i; j++) {
             delete array.base[i];
         }
         delete[] array.base;
         throw new MemoryLimitExceded;
+    }
+       for (i = 0;i < d1Higher - d1Lower + 1; i++){
+           for (int j = 0; j < d2Higher - d2Lower + 1; j++)
+           array.base[i][j] = initial;
     }
     return 0;
 }
