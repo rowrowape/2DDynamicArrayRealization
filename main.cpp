@@ -29,8 +29,10 @@ double put(arr &array, int i, int j, double d) {
         (j >= array.d2Lower) &&
         (j <= array.d2Higher)) {
         array.base[i - array.d1Lower][j - array.d2Lower] = d;
+        return 0 ;
     } else {
         throw new BadBorderException;
+        return 0;
     }
 }
 
@@ -64,9 +66,10 @@ int init(arr &array, int d1Lower, int d1Higher, int d2Lower, int d2Higher, doubl
 
 int kill(arr &array) {
     for (int i = 0; i < array.d1Higher - array.d1Lower; i++) {
-        delete array.base[i];
+        delete [] array.base[i];
     }
     delete[] array.base;
+    return 0;
 }
 
 double get(arr array, int i, int j) {
@@ -101,6 +104,7 @@ double print(arr array) {
         }
         cout << "\n";
     }
+return 0;
 }
 
 int main() {
